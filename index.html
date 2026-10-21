@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu&display=swap" rel="stylesheet">
+    
+    <title>DrEAmCOrE OS</title>
+    <style>
+        body{
+        height:100vh;
+        display:flex;
+            background-image: url('download.jpg');
+            background-repeat:no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            font-family:"Gaegu", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: none;
+
+        }
+
+        .poverlay{
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(232,215,255,0.01);
+            backdrop-filter: blur(6px);
+            display:none;
+            justify-content: center;
+            align-items: center;
+            z-index:9999;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .pop{
+            background-color: rgba(255,255,255,0.85);
+            border:3px double #b5d7fd;
+            border-color:#81b9f6 ;
+            border-radius: 12px;
+            padding:30px;
+            max-width:500px;
+            width:85%;
+            text-align: center;
+            box-shadow:0 10px 30px #ffd6e8 ;
+
+        }
+
+        .welcome{
+            color:#b39ddb;
+            margin:0;
+            font-size:1.1rem;
+            letter-spacing:3px;
+
+        }
+
+
+        .dc{
+            color: #f9bfd8;
+            margin:15px 0;
+            font-size:2.2rem;
+            text-shadow:2px 2px 0px #c2defc;
+            letter-spacing:2px;
+
+        }
+
+
+        .wt{
+            color: #9ed1eb;
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+
+        .continue{
+            background-color: #d4faff;
+            border: 2px solid #b39ddb;
+            border-radius:20px;
+            padding: 12px 28px ;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 1px #b39ddb;
+            cursor:none;
+
+        }
+
+        .custom-mouse{
+            position:fixed;
+            width: 32px;
+            height: 32px;
+            background-image: url('cursor.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            left:-50px;
+            top:-50px;
+        }
+        .continue:hover{
+            transform:translateY(-2px);
+            background-color: #ffd6e8;
+            box-shadow: 0 6px 0px #b39ddb;
+
+        }
+
+        .continue:active{
+            transform:translateY(2px);
+            box-shadow: 0 2px 0px #b39ddb;
+        }
+
+        .continue a{
+            color:#512da8;
+            text-decoration: wavy;
+            font-weight: bold;
+            display: block;
+            cursor:none;
+        }
+        </style>
+        
+    </head>
+    <body>
+        <div class="custom-mouse" id="custom-Mouse"></div>
+        <audio id="bg-music" loop>
+            <source src="bg.mpeg" type="audio/mpeg">
+    
+        </audio>
+        <div class="poverlay">
+            <div class="pop">
+                <h4 class="welcome"> Welcome To </h4>
+                <h3 class="dc"> DREAMCORE OS</h3>
+                <p class="wt"> Click CONTINUE to enter the DrEAmY experience</p>
+                <button class="continue"><a href="Anim">CONTINUE</a></button>
+            </div>
+        </div>
+     <script>
+        window.addEventListener('load', ()=> {
+            alert("Click anywhere on the screen to enter the DreEamY world");
+          
+            setTimeout(() => {
+            window.addEventListener('click',()=>{
+                const music=document.getElementById('bg-music');
+                const overlay= document.querySelector('.poverlay');
+
+                music.play().catch(err=> console.log("Audio blocked:", err));
+
+                overlay.style.display='flex';
+                setTimeout(() =>{
+                    overlay.style.opacity='1';
+                },10);
+            },{once:true});
+        },100);
+        });
+
+     </script>
+
+    </body>
+    </html>

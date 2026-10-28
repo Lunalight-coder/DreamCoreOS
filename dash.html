@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<head>
+     <meta charset="UTF-8">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <title> Main window</title>
+<style>
+    .cdpc{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .d-vd{
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, #4ae0f143 20%, #f86ca860 40%, #f0ee738e 60%, #86f4ae6c 90%);
+        border-radius:50%;
+        border:2px solid rgba(255,255,255,0.8);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-shadow:0 8px 24px rgb(233, 76, 184);
+        cursor:pointer;
+        transition: transform 0.3s ease;
+
+
+    }
+    .d-vd:hover{
+        
+        transform: scale(1.05);
+    }
+    .cdspin{
+        animation:spinTrack 4s linear infinite;
+        }
+    
+    @keyframes spinTrack{
+
+        100%{transform: rotate(360deg);}
+    }
+
+    .cdcontrols{
+        margin-top:20px;
+    }
+    .carn{
+        background: #5e81ac;
+        border-radius: 100%;
+        border: 2px solid rgba(101, 11, 85, 0.4);
+        width: 30px;
+        height:30px;
+        font-size:1rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+    .carn:hover{
+        background: #555555;
+        transform: scale(1.3);
+    }
+
+    .wcontrols{
+        display: flex !important;
+        gap:2px;
+
+    }
+    .appwrap{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index:5;
+    }
+    .app-menu{
+        display: none;
+        position: absolute;
+        top:140px;
+        left:12px;
+        width: 150px;
+        background-color: #d4d0c8;
+        border: 2px solid #000000;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+    }
+    #app{
+        padding-top: 12px;
+        width:100px;
+        margin-top:20px;
+        margin-left:12px;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size:11px;
+    }
+    #app.selected{
+        background-color:#650b55 !important ;
+        color:#ffffff !important;
+        outline-offset:-2px;
+        filter:invert(100%) hue-rotate(180deg);
+    }
+    .window1,#window1{
+        position:fixed; 
+        width:auto;
+        background-color: #d4d0c8 !important; 
+        border:2px solid #000000 !important;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+        display:none;
+        flex-direction: column;
+        padding:0px;
+        z-index:10000;
+        min-width: 300px;
+        top:50%  ;
+        left: 50%;
+        transform:none ;
+        
+    }
+    
+    .windowh{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(90deg, #4a2840, #5e81ac);
+        padding: 4px 8px;
+        color: white;
+        font-family: "Space Mono",monospace;
+        font-size: 12px;
+    }
+
+    #w1close{
+       border-radius: 0px;
+       border: 1px solid #000000;
+        border-width: 1px;
+        cursor: pointer;
+        color: #000000;
+        background-color: #d4d0c8;
+        font-family: "Space Mono", monospace ;
+        font-weight: bold;
+        width: 18px;
+        height: 18px;
+        font-size: 11px;
+        line-height: 14px;
+        padding: 0;
+        text-align: center;
+
+    }
+
+    #openw1{
+        padding: 4px 12px;
+        border-radius: 0px;
+        border: 2px solid;
+        border-color: #ffffff #555555 #555555 #ffffff;
+        
+        box-shadow: inset 0 20 0 rgba(40, 4, 33, 0.4);
+        background-color:  #d4d0c8;
+        color: #650b55;
+        position: fixed;
+        bottom: 10px;
+        left:10px;
+        font-weight: bold;
+        font-size: 13px;
+
+    }
+
+    #openw1 p{
+        margin:0;
+        
+
+    }
+    body{
+        font-family: "Gaegu", sans-serif;
+        background-image:url(w.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        min-height: 100vh;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    
+    #window1{
+        transition: opacity 0.2s ease-in-out, visibility 0.2s;
+        padding: 0px;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+
+        border: 2px solid #000000 !important;
+        width:320px;
+        border-radius: 0px;
+        max-width: 320px;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform:none;
+        background-color: #d4d0c8 !important;
+    }
+    .wcontrols button{
+        border:1px solid #000000;
+        cursor:pointer;
+        color:#000000;
+        background-color: #d4d0c8;
+        font-family:"Space Mono", monospace;
+        font-weight: bold;
+        width:18px;
+        height:18px;
+        font-size:11px;
+        line-height:14px;
+        padding:0;
+        text-align:center;
+        box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+    }
+    .bar{
+        display: flex;
+        justify-content: space-between
+        ;
+        position: absolute;
+        backdrop-filter: blur(12px);
+        background-color: rgba(101, 11, 85, 0.4);
+        color: rgb(225, 195, 253);
+        z-index: 1000;
+        align-items: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        box-sizing: border-box;
+        backdrop-filter: blur(12px);
+        padding: 0 20px;
+        width: 100%;
+
+    }
+
+</style>
+</head>
+<body>
+     <audio id="bg-music" loop>
+            <source src="bg.mpeg" type="audio/mpeg">
+    
+        </audio>
+    
+
+    <div id="window1">
+        <div class="windowh">
+            <span class="windowt"> OS m</span>
+            <button id="w1close"> x</button>
+        </div>
+        <div class="wcontent" style="width: auto;">
+        <p>welcome to DrEAmCOrE OS. THis web OS is based on dreamcore and early 2000s vibe. THis os has only 3 apps which are essential for you in the dreamcore world:<br><hr>
+        -ToDo <br>
+    -Music and <br>
+-Notes<br> <hr>
+Click on the  All_App_Dump.exe to get there and just immerse in the minimalist experience! Hope you enjoy so much you forget the time ....
+<br>
+<hr>
+[NOTE:To drag a window use the top bar]</p>
+        </div>
+
+    </div>
+       
+       
+
+
+
+    <div class="bar">
+       <p> DrEAmCOrE OS</p>
+        <p id="timee">
+            10/22/2026 3:36 PM
+        </p>
+
+
+    </div>
+
+    <div id="openw1">
+         <p style="cursor:pointer" id="window1open">
+            DrEAmCOrE OS
+        </p>
+    </div>
+
+    <div class="appwrap">
+        <div id="app">
+            <img src="folder.jpg" style="width:64px;height:64px;border-radius: 0px; display: block; padding-top: 50%; padding-bottom: 50%; padding-left: 50%; padding-right: 50%;">
+            <p> All_App_Dump.exe</p>
+        </div>
+        </div>
+
+        <div id="appw" class="window1" style="display:none;">           
+              <div class="windowh">
+                <span class="windowt"> File_Log_All_App_Dump.exe</span>
+                <div class="wcontrols">
+                     <button onclick="minwindow('appw')">_</button>
+                      <button onclick="maxwindow('appw')">+</button>
+                <button onclick="closeWindow('appw')">X</button>
+            </div>
+            </div>
+            <div class="wcontent">
+                <h3> Click on any of the 3 file names to open the apps</h3><br><hr>
+            <p onclick="opensapp('notes')"> MeMOry_LOG.exe</p>
+            <p onclick="opensapp('music')"> ReCOrding.playlist_JAN982002.wav</p>
+             <p onclick="opensapp('todo')"> Things_To_Complete_Before_99/99/2003</p>
+             <br>
+             <hr>
+             <h1> Instruction:
+            
+             </h1>
+             <p> Notes(MeMOry_LOG.exe): Default is the  last note you left. To change it just click on the text and go with the flow of the state of your mind <br>
+            <hr>
+        Music(ReCOrding.playlist_JAN982002.wav): Click on the CD to start and stop the music and next icon at the bottom to listen to the next song.
+    <br>
+<hr>
+ToDo(Things_To_Complete_Before_99/99/2003): Their are three default things to do which you need to do COMPULSORILY in the Dreamcoreworld and can't be checked off. Rest you can input in the entry box and click 'something more to not forget ' to
+ enter . Then click on the checkbox when you complete the task</p>
+            
+        </div>
+            
+    </div>
+
+    <!--notes-->
+ <div class="window1" id="notes" style=" display: none;  ">
+    <div class="windowh" id="notesheader">
+       <div class="wcontrols">
+                 <button onclick="minwindow('notes')">_</button>
+                 <button onclick="maxwindow('notes')">+</button>
+                <button onclick="closeWindow('notes')">X</button>
+            </div>
+
+      <p class="windowt"> MeMOry_LOG.exe</p>
+      <div style="width: 16px; margin-right: 6x; height: 16px;"></div>
+    </div>
+    <div
+      style="background-color: #fff; margin: 6px; border-radius: 12px; width: 600px; height: 480px; padding: 16px; font-family: Courier; display: flex;">
+      <div style="background-color: #F9F9F9; width: 180px; margin-right: 16px; padding: 16px; border-radius: 16px;">
+        <p style="margin: 0px;">Soo, you're here,finally you remembered this draft...</p>
+        <p style="font-size: 12px; margin: 0px;">32/10/2002</p>
+      </div>
+
+      <div style="overflow-y: auto; flex:1; min-height:400px; padding-left:12px;">
+        <p contenteditable="true" style="margin:0px; outline:none; width:100%; height:100%; color:#000;">
+           Dear memories... <strong> MeMOry_LOG.exe</strong>
+              </br>
+            </br>
+            Today is 32nd october 2002. I really liked this day! Calm, Peaceful, it felt almost DrEAmY. I wish everyday goes on like this.<br>
+            Using Dreamcore OS , Nokia , landlines, peace. Cant believe it's been 33 years  since we homo sapiens landed on another celestial body..
+            
+        </span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+    <!--music-->
+
+    <div id="music" class="window1" style="display: none;">
+        <div class="windowh">
+            <span class="windowt">ReCOrding.playlist_JAN982002.wav</span>
+            <div class="wcontrols">
+                 <button onclick="minwindow('music')">_</button>
+                 <button onclick="maxwindow('music')">+</button>
+                <button onclick="closeWindow('music')">X</button>
+            </div>
+            </div>
+
+
+            
+            <!--music1-->
+        <div class="wcontent">
+        <div class="cdpc">
+        <img src="cd1.png" id="dvd" class=d-vd onclick="play()" alt="CD...">
+            <div class="cdcontrols">
+                <button class="carn" onclick="next()"> -> </button>
+
+            </div>
+    </div>
+    <audio id="cdaudio" src="music1.mpeg"></audio>
+    </div> 
+    </div>
+
+    
+  
+   
+
+    
+
+    <!--todo-->
+
+    <div id="todo" class="window1" style="display: none;">
+        <div class="windowh">
+            <span class="windowt">Things_To_Complete_Before_99/99/2003 </span>
+            <div class="wcontrols"> 
+            <button onclick="minwindow('todo')">_</button>
+            <button onclick="maxwindow('todo')">+</button>
+            <button onclick="closeWindow('todo')">X</button>
+        </div>
+        </div>
+
+
+        <div class="wcontent"> 
+            <div style="display: flex; gap: 4px; margin-bottom: 10px;">
+                <input type="text" id="todouser" placeholder="EXIST" style="flex: 1; font-family: 'Space Mono',monospace; font-size: 20px; padding: 3px 3px; border: 2px groove; border-color:#808080 #ffffff #ffffff #808080; background: #f9ebfaaa; outline: none;">
+                <button onclick="addtodo()" style="font-family:'Space Mono',monospace; font-size:12px; font-weight: bold; border: 2px solid #000; padding: 2px  8px; background: #d4d0c8; box-shadow:inset 1px 1px 0 #fff, inset -1px -1px 0 #808080; cursor:pointer;"> Somethng More To noT FORgEt</button>
+    </div>
+
+    <div  id="todoli" style="margin: 0; padding-left:18px; font-family:'Gaegu',sans-serif; font-size:13px; line-height: 1.5;">
+       <div class="todoi"  style="display:flex; align-items:center; gap:8px; cursor:pointer; " onclick="strike(this)">
+        <input type="checkbox" style="pointer-events: none; accent-color: #0d0d4f;">
+        <span class="text-letters">BreAthe</span>
+        </div>
+
+        <div class="todoi"  style="display:flex; align-items:center; gap:8px; cursor:pointer; " onclick="strike(this)">
+        <input type="checkbox" style="pointer-events: none; accent-color: #0d0d4f;">
+        <span class="text-letters">SlEep</span>
+        </div>
+
+        <div class="todoi"  style="display:flex; align-items:center; gap:8px; cursor:pointer; " onclick="strike(this)">
+        <input type="checkbox" style="pointer-events: none; accent-color: #0d0d4f;">
+        <span class="text-letters">DrEam</span>
+        </div>
+        </div>
+        </div>
+
+    
+
+    <script src="scriptd.js">
+         
+
+
+
+    </script>
+</body>
